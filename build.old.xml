@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="TunesRemotePlus" default="help">
+<project name="TunesRemotePlus">
 
 <property environment="env"/>
 
