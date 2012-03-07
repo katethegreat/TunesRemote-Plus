@@ -51,8 +51,8 @@ import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -283,77 +283,70 @@ public class LibraryActivity extends Activity implements ServiceListener {
       }
    }
 
-   @Override
    public boolean onCreateOptionsMenu(Menu menu) {
       super.onCreateOptionsMenu(menu);
 
-      MenuItem refresh = menu.add(R.string.library_menu_refresh);
-      refresh.setIcon(android.R.drawable.ic_menu_rotate);
-      refresh.setOnMenuItemClickListener(new OnMenuItemClickListener() {
-         public boolean onMenuItemClick(MenuItem item) {
-
-            try {
-               startProbe();
-            } catch (Exception e) {
-               Log.d(TAG, String.format("onCreate Error: %s", e.getMessage()));
-            }
-            return true;
-         }
-      });
-
-      MenuItem manual = menu.add(R.string.library_menu_manual);
-      manual.setIcon(android.R.drawable.ic_menu_manage);
-      manual.setOnMenuItemClickListener(new OnMenuItemClickListener() {
-         public boolean onMenuItemClick(MenuItem item) {
-
-            LayoutInflater inflater = (LayoutInflater) LibraryActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            final View view = inflater.inflate(R.layout.dia_text, null);
-            final TextView address = (TextView) view.findViewById(android.R.id.text1);
-            final TextView code = (TextView) view.findViewById(android.R.id.text2);
-            code.setText("0000000000000001");
-
-            new AlertDialog.Builder(LibraryActivity.this).setView(view).setPositiveButton(R.string.library_manual_pos, new DialogInterface.OnClickListener() {
-               public void onClick(DialogInterface dialog, int which) {
-                  // try connecting to this specific ip address
-                  Intent shell = new Intent();
-                  shell.putExtra(BackendService.EXTRA_ADDRESS, address.getText().toString());
-                  shell.putExtra(BackendService.EXTRA_LIBRARY, "Manual");
-                  shell.putExtra(BackendService.EXTRA_CODE, code.getText().toString());
-                  onActivityResult(-1, Activity.RESULT_OK, shell);
-
-               }
-            }).setNegativeButton(R.string.library_manual_neg, new DialogInterface.OnClickListener() {
-               public void onClick(DialogInterface dialog, int which) {
-               }
-            }).create().show();
-
-            return true;
-         }
-      });
-
-      MenuItem forget = menu.add(R.string.library_menu_forget);
-      forget.setIcon(android.R.drawable.ic_menu_delete);
-      forget.setOnMenuItemClickListener(new OnMenuItemClickListener() {
-         public boolean onMenuItemClick(MenuItem item) {
-
-            new AlertDialog.Builder(LibraryActivity.this).setMessage(R.string.library_forget)
-                     .setPositiveButton(R.string.library_forget_pos, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                           backend.pairdb.deleteAll();
-
-                        }
-                     }).setNegativeButton(R.string.library_forget_neg, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                        }
-                     }).create().show();
-
-            return true;
-         }
-      });
+      MenuInflater inflater = getMenuInflater();
+      inflater.inflate(R.menu.library, menu);
 
       return true;
    }
+   
+   public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle item selection
+	    switch (item.getItemId()) {
+	        case R.id.library_menu_refresh:
+	           try {
+	               startProbe();
+	            } catch (Exception e) {
+	               Log.d(TAG, String.format("onCreate Error: %s", e.getMessage()));
+	            }
+	            return true;
+	        case R.id.library_menu_manual:
+	        	LayoutInflater inflater = (LayoutInflater) LibraryActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	            final View view = inflater.inflate(R.layout.dia_text, null);
+	            final TextView address = (TextView) view.findViewById(android.R.id.text1);
+	            final TextView code = (TextView) view.findViewById(android.R.id.text2);
+	            code.setText("0000000000000001");
 
+	            new AlertDialog.Builder(LibraryActivity.this).setView(view).setPositiveButton(R.string.library_manual_pos, new DialogInterface.OnClickListener() {
+	               public void onClick(DialogInterface dialog, int which) {
+	                  // try connecting to this specific ip address
+	                  Intent shell = new Intent();
+	                  shell.putExtra(BackendService.EXTRA_ADDRESS, address.getText().toString());
+	                  shell.putExtra(BackendService.EXTRA_LIBRARY, "Manual");
+	                  shell.putExtra(BackendService.EXTRA_CODE, code.getText().toString());
+	                  onActivityResult(-1, Activity.RESULT_OK, shell);
+
+	               }
+	            }).setNegativeButton(R.string.library_manual_neg, new DialogInterface.OnClickListener() {
+	               public void onClick(DialogInterface dialog, int which) {
+	               }
+	            }).create().show();
+
+	            return true;
+	        case R.id.library_menu_forget:
+	            new AlertDialog.Builder(LibraryActivity.this).setMessage(R.string.library_forget)
+                .setPositiveButton(R.string.library_forget_pos, new DialogInterface.OnClickListener() {
+                   public void onClick(DialogInterface dialog, int which) {
+                      backend.pairdb.deleteAll();
+
+                   }
+                }).setNegativeButton(R.string.library_forget_neg, new DialogInterface.OnClickListener() {
+                   public void onClick(DialogInterface dialog, int which) {
+                   }
+                }).create().show();
+
+	            return true;
+	        case R.id.menu_settings:
+	        	Intent settings = new Intent(LibraryActivity.this, PrefsActivity.class);
+	            startActivity(settings);
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
+
+   
    public class LibraryAdapter extends BaseAdapter {
 
       protected Context context;

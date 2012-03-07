@@ -56,6 +56,13 @@
                 
   <PreferenceCategory
 		android:title="Interface settings">
+		
+		<ListPreference
+			android:key="@string/pref_theme"
+			android:summary="This preference allows to select the theme."
+            android:defaultValue="1"
+            android:entries="@array/prefThemeArray"
+            android:entryValues="@array/prefThemeValues" android:dialogTitle="Theme Preference" android:title="Theme Preference"/>
 	
 		<CheckBoxPreference
 			android:key="@string/pref_fade"

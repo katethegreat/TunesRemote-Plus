@@ -63,6 +63,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -565,7 +566,6 @@ public class ControlActivity extends Activity {
       }
 
       setContentView(R.layout.act_control);
-
       this.vibrator = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
 
       // prepare volume toast view

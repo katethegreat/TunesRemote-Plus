@@ -60,7 +60,7 @@
   <string name="control_menu_speakers">Speakers</string>
   <string name="control_menu_clearcue">Clear Cue</string>
   <string name="library_menu_refresh">Refresh</string>
-  <string name="library_menu_manual">Manual Add</string>
+  <string name="library_menu_manual">Manually Add</string>
   <string name="library_menu_forget">Forget All</string>
   <string name="library_forget">Are you sure you want to forget all libraries ever paired with?</string>
   <string name="library_forget_pos">Yes, forget</string>
@@ -100,7 +100,7 @@
   <string name="pref_volumeincrement">volumeincrement</string>
   <string name="pref_autopause">autopause</string>
   <string name="pref_cropimage">cropimage</string>
-  <string name="pref_fullscreen">fullscreen</string>
+  <string name="pref_fullscreen">fullscreen</string><string name="pref_theme">theme</string>
   <string name="artists_menu_queue">Queue Artist</string>
   <string name="albums_menu_queue">Queue Album</string>
   <string name="tracks_menu_play">Play Track</string>
@@ -110,4 +110,6 @@
   <string name="search_menu_open_artist">Open Artist</string>
   <string name="speakers_dialog_computer_speaker">Computer Speaker</string>
   <string name="speakers_dialog_airport_express">Airport Express</string>
+  <string name="menu_settings">Settings</string>
+  
 </resources>

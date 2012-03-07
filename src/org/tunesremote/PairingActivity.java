@@ -81,7 +81,7 @@ public class PairingActivity extends Activity {
       // the pairing server will report to us when someone tries pairing
       pairingServer = new PairingServer(paired);
 
-      final Hashtable<String, String> values = new Hashtable<String, String>();
+      final Hashtable values = new Hashtable();
       values.put("DvNm", Build.MODEL);
       values.put("RemV", "10000");
       values.put("DvTy", Build.MANUFACTURER);

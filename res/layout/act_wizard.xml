@@ -50,7 +50,6 @@
 			android:id="@+id/action_prev"
 			android:layout_width="120dip"
 			android:layout_height="wrap_content"
-			android:drawableLeft="@drawable/ic_btn_back"
 			android:text="Cancel"
 			android:gravity="center"
 			/>
@@ -59,7 +58,6 @@
 			android:id="@+id/action_next"
 			android:layout_width="120dip"
 			android:layout_height="wrap_content"
-			android:drawableRight="@drawable/ic_btn_next"
 			android:text="Agree"
 			android:gravity="center"
 			/>

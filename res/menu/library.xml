@@ -1,0 +1,18 @@
+
+    <menu xmlns:android="http://schemas.android.com/apk/res/android">
+       	<item android:id="@+id/library_menu_manual"
+          android:icon="@drawable/add"
+          android:title="@string/library_menu_manual"
+          android:showAsAction="always" />
+    	<item android:id="@+id/library_menu_refresh"
+          android:icon="@drawable/refresh"
+          android:title="@string/library_menu_refresh"
+          android:showAsAction="always" />
+    	<item android:id="@+id/library_menu_forget"
+    	    android:title="@string/library_menu_forget"
+    	    android:showAsAction="never" />
+		<item android:id="@+id/menu_settings"
+		    android:title="@string/menu_settings"
+		    android:showAsAction="never" />
+    </menu>
+    
